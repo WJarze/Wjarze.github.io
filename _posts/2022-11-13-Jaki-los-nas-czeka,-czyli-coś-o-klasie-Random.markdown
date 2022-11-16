@@ -6,4 +6,4 @@ categories: jekyll update
 ---
 Nie wyważamy otwartych dzrzwi 
 
-[wikipedia][https://www.facebook.com/wojtekJ4/](https://pl.wikipedia.org/wiki/Losowo%C5%9B%C4%87)
+[wikipedia](https://pl.wikipedia.org/wiki/Losowo%C5%9B%C4%87)
