@@ -3,7 +3,7 @@ layout: post
 title:  "Jaki los nas czeka, czyli coś o klasie Random!"
 date:   2022-11-13 17:41:28 +0100
 categories: jekyll update
-feature_image: feature-image.jpg
+feature_image: ConditionRandomGenerator.jpg
 ---
  Ile razy wspominamy o zrządzeniach losu jakie nas spotkały, ile rzeczy sobie tym tłumaczymy.
 Ten wpis będzie własnie o tym jak możemy symulować ten los w Javie. 
@@ -31,11 +31,4 @@ Przykłądowe rozwiązenie wykorzystujące Stream API z Javy.
 
 #
 
-## Add images
 
-Create an `assets` folder where you can put all your images, 
-then display them with a link starting with an exclamative mark like this: 
-`![my inspiring image]({{ "/assets/sample-image.jpg" | relative_url }})`.
-
-![my inspiring image]({{ "/assets/sample-image.jpg" | relative_url }})
-_Photo by [Ian Schneider](https://unsplash.com/@goian)_
