@@ -18,7 +18,7 @@ Ten wpis będzie własnie o tym jak możemy symulować ten los w Javie.
 
 Tak więc zacznijmy od klasyka czyli loterii liczbowych jednak rozwiązanie które przedstawie będzie 
 bardziej elastyczne niz klasyczny totto lotek.
-A żeby tak sie stalo na początek poczynimy niezbędne założenia:
+A żeby tak sie stalo na początek poczynimy niezbędne założenia. I tak:
 - chcemy mieć mozliwość określenia przedziału z jakiego liczby będą losowane
 - oraz ilość losowanych liczb
 - natomiast nie chcemy aby się powtarzały
@@ -26,7 +26,7 @@ A żeby tak sie stalo na początek poczynimy niezbędne założenia:
 Przykłądowe rozwiązenie wykorzystujące Stream API z Javy.
 
 
-![my inspiring image]({{ "/assets/ConditionRandomGenerator.jpg" | relative_url }})
+![conditions]({{ "/assets/ConditionRandomGenerator.jpg" | relative_url }})
 
 
 
