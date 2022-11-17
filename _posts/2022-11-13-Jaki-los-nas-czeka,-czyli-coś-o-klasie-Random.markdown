@@ -3,6 +3,7 @@ layout: post
 title:  "Jaki los nas czeka, czyli coś o klasie Random!"
 date:   2022-11-13 17:41:28 +0100
 categories: jekyll update
+feature_image: feature-image.jpg
 ---
  Ile razy wspominamy o zrządzeniach losu jakie nas spotkały, ile rzeczy sobie tym tłumaczymy.
 Ten wpis będzie własnie o tym jak możemy symulować ten los w Javie. 
