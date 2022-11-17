@@ -15,3 +15,6 @@ Ten wpis będzie własnie o tym jak możemy symulować ten los w Javie.
 [Generator liczb pseudolosowych](https://pl.wikipedia.org/wiki/Generator_liczb_pseudolosowych).
 
 [Dokumentacja klasy Random](https://docs.oracle.com/javase/8/docs/api/java/util/Random.html).
+
+Tak więc zacznijmy od klasyka czyli loterii liczbowych jednak rozwiązanie które przedstawie będzie 
+bardziej elastyczne niz klasyczny toto lotek. 
