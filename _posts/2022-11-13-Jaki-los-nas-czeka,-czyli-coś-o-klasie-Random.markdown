@@ -26,7 +26,9 @@ A żeby tak sie stalo na początek poczynimy niezbędne założenia. I tak:
 Przykłądowe rozwiązenie wykorzystujące Stream API z Javy.
 
 #
+
 ![conditions]({{ "/assets/ConditionRandomGenerator.jpg" | relative_url }})
+
 #
 
 
