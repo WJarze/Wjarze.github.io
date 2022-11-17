@@ -17,4 +17,14 @@ Ten wpis będzie własnie o tym jak możemy symulować ten los w Javie.
 [Dokumentacja klasy Random](https://docs.oracle.com/javase/8/docs/api/java/util/Random.html).
 
 Tak więc zacznijmy od klasyka czyli loterii liczbowych jednak rozwiązanie które przedstawie będzie 
-bardziej elastyczne niz klasyczny toto lotek. 
+bardziej elastyczne niz klasyczny totto lotek.
+A żeby tak sie stalo na początek poczynimy niezbędne założenia:
+- chcemy mieć mozliwość określenia przedziału z jakiego liczby będą losowane
+- oraz ilość losowanych liczb
+- natomiast nie chcemy aby się powtarzały
+
+Przykłądowe rozwiązenie wykorzystujące Stream API z Javy.
+#
+![useful image](https://github.com/WJarze/Wjarze.github.io/blob/main/_site/assets/ConditionRandomGenerator.png)
+#
+
