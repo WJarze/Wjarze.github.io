@@ -3,7 +3,6 @@ layout: post
 title:  "Jaki los nas czeka, czyli coś o klasie Random!"
 date:   2022-11-13 17:41:28 +0100
 categories: jekyll update
-feature_image: ConditionRandomGenerator.jpg
 ---
  Ile razy wspominamy o zrządzeniach losu jakie nas spotkały, ile rzeczy sobie tym tłumaczymy.
 Ten wpis będzie własnie o tym jak możemy symulować ten los w Javie. 
@@ -25,10 +24,10 @@ A żeby tak sie stalo na początek poczynimy niezbędne założenia:
 - natomiast nie chcemy aby się powtarzały
 
 Przykłądowe rozwiązenie wykorzystujące Stream API z Javy.
-#
+
 
 ![useful image](https://github.com/WJarze/Wjarze.github.io/blob/main/assets/ConditionRandomGenerator.jpg).
 
-#
+
 
 
