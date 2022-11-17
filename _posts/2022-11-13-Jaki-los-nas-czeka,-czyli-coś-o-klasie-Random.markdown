@@ -25,6 +25,8 @@ A żeby tak sie stalo na początek poczynimy niezbędne założenia:
 
 Przykłądowe rozwiązenie wykorzystujące Stream API z Javy.
 #
+
 ![useful image](https://github.com/WJarze/Wjarze.github.io/blob/main/_site/assets/ConditionRandomGenerator.png)
+
 #
 
