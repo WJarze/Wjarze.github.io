@@ -107,7 +107,7 @@ public class Main {
 Aby zobaczyć że kod działa zapraszam do pobrania z [repozytorium](https://github.com/WJarze/Excercise.git) , folder random.
 
 A teraz pora na omówienie możliwości takiej metody. nie trudno się domyslić ze wszelkie loterie liczbowe są jej pisane , ale czy tylko?
-Przykładowo warunki zawarte w tym obiekcie ```NumbersConditions numbersConditions = new NumbersConditions ( 1 , 1 , 6 );``` będzą odpowiadać pojedyńczemu rzutowi kostką do gry , a idąc dalej ```NumbersConditions numbersConditions = new NumbersConditions ( 1 , 0 , 1 );``` będzie odpowiadać rzutowi monetą.
+Przykładowo warunki zawarte w obiekcie ```NumbersConditions numbersConditions = new NumbersConditions ( 1 , 1 , 6 );``` będzą odpowiadać pojedyńczemu rzutowi kostką do gry , a idąc dalej ```NumbersConditions numbersConditions = new NumbersConditions ( 1 , 0 , 1 );``` będzie odpowiadać rzutowi monetą.
 <br> Podsumowując gdy w grach los się do nas nie uśmiechnie, klasę Random możemy wykorzystać do generowanie losowych wartości na potrzeby testów, symulacji przypadkowych trajektorji róznych obiektów fizycznych i wielu innych systemch które mamy zamiar zaprogramować a mają charakter losowy. 
 Po więcej przykładów zapraszam do [repozytorium](https://github.com/WJarze/Excercise.git).
 
