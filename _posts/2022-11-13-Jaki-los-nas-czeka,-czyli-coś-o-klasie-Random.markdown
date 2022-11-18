@@ -34,6 +34,18 @@ Przykłądowe rozwiązenie wykorzystujące Stream API z Javy.
 ![main]({{ "/assets/Main.png" | relative_url }})
 
 
-
+```
+ Molecule[] move(Random random){
+        for (int i = 0; i < molecules.length; i++) {
+            for (int j = 0; j < numbersOfMove; j++) {
+                int x = molecules[ i ].moveX ( random );
+                int y = molecules[ i ].moveY ( random );
+                molecules[ i ] = new Molecule ( x , y );
+                nextMove[j] =  molecules[ i ];
+            }
+        }
+        return nextMove;
+    }
+```
 
 
