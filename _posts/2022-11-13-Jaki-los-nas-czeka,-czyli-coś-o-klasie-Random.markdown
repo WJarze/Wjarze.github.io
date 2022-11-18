@@ -33,7 +33,6 @@ Przykłądowe rozwiązenie wykorzystujące Stream API z Javy.
 
 ![main]({{ "/assets/Main.png" | relative_url }})
 
-
-
+![main]({{ "/assets/gistfile1.txt" | relative_url }})
 
 
