@@ -52,6 +52,8 @@ public class NumbersConditions {
 }
 
 ```
+
+
 #
 
 W kolejnej klasie dzieje się magia, jedyna metoda która przyjmuje warunki ```(NumbersConditions numbersConditions)```, 
@@ -90,6 +92,7 @@ public class Generator {
 ```
 
 #
+
 I ostatecznie klasa z metodą main
 ```js
 package random.RandomNumbersGenerator;
