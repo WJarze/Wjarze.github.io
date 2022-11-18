@@ -53,9 +53,6 @@ public class NumbersConditions {
 
 ```
 
-
-#
-
 W kolejnej klasie dzieje się magia, jedyna metoda która przyjmuje warunki ```(NumbersConditions numbersConditions)```, 
 <br> generuje wykorzystując lambdę nieskończony strumień liczb dla podanego przedziału
 <br>```  IntStream.generate ( () -> {return (rand.nextInt ( numbersConditions.getOrigin ( ) , numbersConditions.getBounds ( )));})```,
@@ -90,8 +87,6 @@ public class Generator {
 }
 
 ```
-
-#
 
 I ostatecznie klasa z metodą main
 ```js
