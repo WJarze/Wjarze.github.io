@@ -52,7 +52,7 @@ public class NumbersConditions {
 }
 
 ```
-
+***
 W kolejnej klasie dzieje się magia, jedyna metoda która przyjmuje warunki ```(NumbersConditions numbersConditions)```, 
 <br> generuje wykorzystując lambdę nieskończony strumień liczb dla podanego przedziału
 <br>```  IntStream.generate ( () -> {return (rand.nextInt ( numbersConditions.getOrigin ( ) , numbersConditions.getBounds ( )));})```,
@@ -87,7 +87,7 @@ public class Generator {
 }
 
 ```
-
+***
 I ostatecznie klasa z metodą main
 ```js
 package random.RandomNumbersGenerator;
@@ -104,6 +104,7 @@ public class Main {
 }
 
 ```
+***
 Aby zobaczyć że kod działa zapraszam do pobrania z [repozytorium](https://github.com/WJarze/Excercise.git) , folder random.
 
 A teraz pora na omówienie możliwości takiej metody. nie trudno się domyslić ze wszelkie loterie liczbowe są jej pisane , ale czy tylko?
