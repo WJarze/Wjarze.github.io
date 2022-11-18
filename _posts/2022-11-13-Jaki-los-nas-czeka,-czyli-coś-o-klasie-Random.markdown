@@ -39,7 +39,7 @@ public class NumbersConditions {
     }
 
     public int getOrigin() {
-        return origin + 1;
+        return origin;
     }
 
     public int getBounds() {
@@ -53,11 +53,23 @@ public class NumbersConditions {
 
 ```
 
-W tej klasie dzieje się magia
+W kolejnej klasie dzieje się magia ,jedyna metoda która przyjmuje warunki ```(NumbersConditions numbersConditions)```,
+
+generuje wykorzystując lambdę nieskończony strumień liczb dla podanego przedziału
+
+```  IntStream.generate ( () -> {return (rand.nextInt ( numbersConditions.getOrigin ( ) , numbersConditions.getBounds ( )));})```,
+
+ eliminuje powtórzenia ```distinct ( )``` , 
+ 
+ pobiera określoną w warunkach liczbę elementów ```limit ( numbersConditions.getSize ( ) )```,
+ 
+ opakowuje strumień ```boxed ( )```,
+ 
+ zwraca jako listę ```toList ( )``` którą następnie drukuje ```forEach ( System.out::println );```
+ 
 ```js
 package random.RandomNumbersGenerator;
 
-import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -68,20 +80,15 @@ public class Generator {
         this.rand = rand;
     }
 
-    public List<Integer> randomNumbers(NumbersConditions numbersConditions) {
-        return IntStream.generate ( () -> {
+    public void randomNumbers(NumbersConditions numbersConditions) {
+        IntStream.generate ( () -> {
                     return (rand.nextInt ( numbersConditions.getOrigin ( ) , numbersConditions.getBounds ( ) ));
                 } )
                 .distinct ( )
                 .limit ( numbersConditions.getSize ( ) )
                 .boxed ( )
-                .toList ( );
-    }
-
-    void showRandomNumbers(List<Integer> list) {
-        for (Integer numbers : list) {
-            System.out.println ( numbers );
-        }
+                .toList ( )
+                .forEach ( System.out::println );
     }
 }
 
@@ -94,10 +101,10 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        NumbersConditions numbersConditions = new NumbersConditions ( 6 , 0 , 49 );
+        NumbersConditions numbersConditions = new NumbersConditions ( 6 , 1 , 49 );
         Random rand = new Random ( );
         Generator generate = new Generator ( rand );
-        generate.showRandomNumbers ( generate.randomNumbers ( numbersConditions ) );
+        generate.randomNumbers ( numbersConditions );
     }
 }
 
