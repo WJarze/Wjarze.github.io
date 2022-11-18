@@ -29,6 +29,11 @@ Przykłądowe rozwiązenie wykorzystujące Stream API z Javy.
 
 ![conditions]({{ "/assets/NumbersConditions.png" | relative_url }})
 
+![generator]({{ "/assets/RandomGenerator.png" | relative_url }})
+
+![main]({{ "/assets/Main.png" | relative_url }})
+
+
 
 
 
