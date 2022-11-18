@@ -23,29 +23,84 @@ A żeby tak sie stalo na początek poczynimy niezbędne założenia. I tak:
 - oraz ilość losowanych liczb
 - natomiast nie chcemy aby się powtarzały
 
-Przykłądowe rozwiązenie wykorzystujące Stream API z Javy.
+Spełnieniem powyższych warunków jest ponizsza klasa:
+```js
+package random.RandomNumbersGenerator;
 
+public class NumbersConditions {
+    private int origin;
+    private int bounds;
+    private int size;
 
+    public NumbersConditions(int size , int origin , int bounds) {
+        this.size = size;
+        this.origin = origin;
+        this.bounds = bounds;
+    }
 
-![conditions]({{ "/assets/NumbersConditions.png" | relative_url }})
+    public int getOrigin() {
+        return origin + 1;
+    }
 
-![generator]({{ "/assets/RandomGenerator.png" | relative_url }})
+    public int getBounds() {
+        return bounds + 1;
+    }
 
-![main]({{ "/assets/Main.png" | relative_url }})
-
+    public int getSize() {
+        return size;
+    }
+}
 
 ```
- Molecule[] move(Random random){
-        for (int i = 0; i < molecules.length; i++) {
-            for (int j = 0; j < numbersOfMove; j++) {
-                int x = molecules[ i ].moveX ( random );
-                int y = molecules[ i ].moveY ( random );
-                molecules[ i ] = new Molecule ( x , y );
-                nextMove[j] =  molecules[ i ];
-            }
-        }
-        return nextMove;
+
+W tej klasie dzieje się magia
+```js
+package random.RandomNumbersGenerator;
+
+import java.util.List;
+import java.util.Random;
+import java.util.stream.IntStream;
+
+public class Generator {
+    private final Random rand;
+
+    public Generator(Random rand) {
+        this.rand = rand;
     }
+
+    public List<Integer> randomNumbers(NumbersConditions numbersConditions) {
+        return IntStream.generate ( () -> {
+                    return (rand.nextInt ( numbersConditions.getOrigin ( ) , numbersConditions.getBounds ( ) ));
+                } )
+                .distinct ( )
+                .limit ( numbersConditions.getSize ( ) )
+                .boxed ( )
+                .toList ( );
+    }
+
+    void showRandomNumbers(List<Integer> list) {
+        for (Integer numbers : list) {
+            System.out.println ( numbers );
+        }
+    }
+}
+
+```
+
+```js
+package random.RandomNumbersGenerator;
+
+import java.util.Random;
+
+public class Main {
+    public static void main(String[] args) {
+        NumbersConditions numbersConditions = new NumbersConditions ( 6 , 0 , 49 );
+        Random rand = new Random ( );
+        Generator generate = new Generator ( rand );
+        generate.showRandomNumbers ( generate.randomNumbers ( numbersConditions ) );
+    }
+}
+
 ```
 
 
