@@ -26,9 +26,9 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 
-github_username:  WJarze
+github_username:  wjarze
 
-staticman_url: https://app-bjava/v3/entry/github/WJarze/Wjarze.github.io/main/comments
+staticman_url: https://app-bjava/v3/entry/github/wjarze/wjarze.github.io/main/comments
 
 # Build settings
 theme: minima
