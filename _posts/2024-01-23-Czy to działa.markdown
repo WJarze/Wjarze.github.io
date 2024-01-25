@@ -74,7 +74,7 @@ then - opisuje oczekiwane wyniki lub efekty działania testu. Odnosi się do teg
       }
     }
 
-nader rozwlekły test. Popraiona metoda zwracająca stringa i test
+nader rozwlekły test. Poprawiona metoda zwracająca stringa i test
 
     package org.example;
 
