@@ -150,7 +150,7 @@ Napjprostszy chyba zmożliwych z Java.Util
 
 i dla krótkiego objaśnienia
 
-info - to poziom logowania który nie tzreba tłumaczyć kolejne to
+info - to poziom logowania który nie trzeba tłumaczyć kolejne to
 
 severe - krytyczne błędy apka moze się wysypać
 
