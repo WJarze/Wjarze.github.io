@@ -133,7 +133,7 @@ możliwe i uzasadnione, a samą wartość diagnostyczną może nieść odpowiedn
 Wyobrażmy sobie program który ma kilkadziesiąt klas a w metodach void zaszywamy System.out.println("i dpowiedni komentarz który możze być bardzo długi żeby przedstawiał ze sobą wartość diagnostyczną), no nie będzie to wyglądać dobrze. 
 Do tego są w ecosystemie javy stworzone mechanizmy logowania zawierające gotowe biblioteki które mają większe mozliwości i są bardziej przejrzyste w zastosowaniu jeśli już musimy to stosujmy je. 
 
-Napjprostszy chyba zmożliwych z Java.Util
+Najprostszy chyba z możliwych z Java.Util
 
     package org.example;
 
