@@ -11,14 +11,14 @@ Podejście, w którym najpierw tworzy się testy jednostkowe, a dopiero potem im
 
 Po chwili namysłu mozna dojsć do następujących wniosków:  
 - trzeba określić jaką funkcjonalność chemy przetestować i napisać test, który opisuje jedną konkretą funkcję lub zachowanie.
-- kolejnie taki ogólny test jeszce bez zadnej implementacji kodu powinien zakońzcyc się niepowodzeniem
+- kolejnie taki ogólny test jeszcze bez żadnej implementacji kodu powinien zakończyć się niepowodzeniem
 - czas na jakąś implementację kodu , który by spełnił wymagania testu
 - kolejnie ponownie uruchamiamy test
 - powodzenie testu lub niepowodzenie implikuje dalsze zachowanie nazywane refaktoryzacją
 
-i tak do skutku. 
+i tak do skutku IDE raz krwawi na czerowno by po kolejnych pętlach obdarowć nas zielenią.
 Stosowanie tego podejścia wymaga już pewnego obycia z jezykiem Java, zasad SOLID o których kiedyś jeszcze napiszę jak i z narzędziami do testowania.
-Ale nie przedłużając przykąłd. Ponieważ Java siecią stoi wiec staniemy się klientami wysyłającymi żaądanie i oczekującymi odpowiedzi. Zacznijmy od żadania
+Ale nie przedłużając przykład. Ponieważ Java siecią stoi wiec staniemy się klientami wysyłającymi żaądanie i oczekującymi odpowiedzi. Zacznijmy od żadania
 
 no to piszemy test przy podstawoweym założeniu ze mamy klasę a w niej metodę do wysłania przygotownia żądania mniej wiecej wygląda to tak
 
