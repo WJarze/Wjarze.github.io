@@ -1,1 +1,371 @@
+---
+layout: post
+title:  "Po co "main"?
+date:   2024-01-29 17:41:28 +0100
+categories: jekyll update
+---
 
+A po co main?, no właśnie zasadniczo aplikacja ma spełniać określone założenia metoda main jest tą wisienką na torcie ale nie daje gwarancji że aplikacja się nie wysypie,
+taką gwarancje mogą nam dać testy. Uzasadnione jest napisanie testów wokół których będziemy rozwijać implementację aplikacji.
+Podejście, w którym najpierw tworzy się testy jednostkowe, a dopiero potem implementuje kod, jest często nazywane "Test-Driven Development" (TDD). To podejście zakłada, że testy jednostkowe są tworzone przed implementacją kodu, co ma na celu zapewnienie, że każdy aspekt funkcjonalności jest testowany, a kod jest pisany z myślą o spełnieniu określonych wymagań. Początki takiego podejścia są trudne, warto się chwilę zastanowic jakie kroki trzeba podjąć aby ten cel zrealizować.
+
+Po chwili namysłu mozna dojsć do następujących wniosków:  
+- trzeba określić jaką funkcjonalność chemy przetestować i napisać test, który opisuje jedną konkretą funkcję lub zachowanie.
+- kolejnie taki ogólny test jeszce bez zadnej implementacji kodu powinien zakońzcyc się niepowodzeniem
+- czas na jakąś implementację kodu , który by spełnił wymagania testu
+- kolejnie ponownie uruchamiamy test
+- powodzenie testu lub niepowodzenie implikuje dalsze zachowanie nazywane refaktoryzacją
+
+i tak do skutku. 
+Stosowanie tego podejścia wymaga już pewnego obycia z jezykiem Java, zasad SOLID o których kiedyś jeszcze napiszę jak i z narzędziami do testowania.
+Ale nie przedłużając przykąłd. Ponieważ Java siecią stoi wiec staniemy się klientami wysyłającymi żaądanie i oczekującymi odpowiedzi. Zacznijmy od żadania
+
+no to piszemy test przy podstawoweym założeniu ze mamy klasę a w niej metodę do wysłania przygotownia żądania mniej wiecej wygląda to tak
+
+Test
+
+    package org.wjarze.JavaNetworking;
+
+    import org.junit.jupiter.api.Test;
+    import static org.junit.jupiter.api.Assertions.*;
+
+    class ClientTest {
+        @Test
+        public void getRequest(){
+            //Given
+            Client client = new Client();
+
+            //When
+            String result = client.getRequest();
+
+            //Then
+            assertEquals ( "GET" ,result );
+        }
+     }
+
+i klasa
+
+    package org.wjarze.JavaNetworking;
+
+    public class Client {
+        public String getRequest() {
+            return null;
+        }
+    }
+
+oczywiście test się wysypie , teraz pora wysłać to rządanie posłuże sie popularną kalsą HttpClient po zerknięciu do dokumentacji czas na refaktoryzacje
+
+teraz klasa ma postać
+
+    package org.wjarze.JavaNetworking;
+
+    import java.net.http.HttpClient;
+
+    public class Client {
+         HttpClient httpClient;
+
+        public Client(HttpClient httpClient) {
+            this.httpClient = httpClient;
+        }
+        public String getRequest() {
+            return null;
+         }
+    }
+
+a test
+
+    package org.wjarze.JavaNetworking;
+
+    import java.net.http.HttpClient;
+    import org.junit.jupiter.api.Test;
+    import static org.junit.jupiter.api.Assertions.*;
+
+    class ClientTest {
+        @Test
+        public void getRequest(){
+            //Given
+            HttpClient httpClient = HttpClient.newHttpClient ();
+            Client client = new Client(httpClient);
+
+            //When
+            String result = client.getRequest();
+
+            //Then
+            assertEquals ( "GET" ,result );
+        }
+    }
+
+i w tym wypadku test się wysypie no nie wątpliwie przydało by sie jakieś ciało metody szybki w glad w dokumentacje i mam.
+Po modyfikacjach
+
+    package org.wjarze.JavaNetworking;
+
+     import java.net.URI;
+     import java.net.http.HttpClient;
+     import java.net.http.HttpRequest;
+     
+     public class Client {
+     HttpClient httpClient;
+     
+     public Client(HttpClient httpClient) {
+        this.httpClient = httpClient;
+    }
+    public HttpRequest getRequest(String baseURL) {
+    return HttpRequest.newBuilder ( )
+                .uri ( URI.create ( baseURL ) )
+                .build ( );
+          }
+      }
+
+test
+
+    package org.wjarze.JavaNetworking;
+    
+    import java.net.http.HttpClient;
+    import java.net.http.HttpRequest;
+    import org.junit.jupiter.api.Test;
+    import static org.junit.jupiter.api.Assertions.*;
+    
+    class ClientTest {
+    @Test
+    public void getRequest(){
+        //Given
+        String baseURL = "http://example.com";
+
+        HttpClient httpClient = HttpClient.newHttpClient ();
+        Client client = new Client(httpClient);
+
+        //When
+        String result = client.getRequest(baseURL).method ();
+
+        //Then
+        assertEquals ( "GET" ,result );
+
+    }
+
+}
+
+i po tych modyfikacjach mamy sukces.
+Dalej robi się ciekawiej zobaczymy co przyniesie odpowiedz z servera zaczynając od testu zakładamy ze odpowiedż nadejdzie oczekujemy wiec jej statusu 200.
+
+    package org.wjarze.JavaNetworking;
+    import java.io.IOException;
+    import java.net.http.HttpClient;
+    import java.net.http.HttpRequest;
+    import java.net.http.HttpResponse;
+    import org.junit.jupiter.api.Test;
+    import static org.junit.jupiter.api.Assertions.*;
+    import static org.mockito.Mockito.mock;
+    import static org.mockito.Mockito.when;
+    
+    class ClientTest {
+    @Test
+    public void should_Get_Request_Method{
+        //Given
+        String baseURL = "http://nbexample.com";
+
+        HttpClient httpClient = HttpClient.newHttpClient ();
+        Client client = new Client(httpClient);
+
+        //When
+        String result = client.getRequest (baseURL).method ();
+        //Then
+        assertEquals ( "GET" ,result );
+    }
+    
+    @Test
+    void should_Return_StatusCode() throws IOException, InterruptedException {
+        //Given
+        String baseURL = "http://example.com";
+
+        HttpClient httpClient = HttpClient.newHttpClient ();
+
+        Client client = new Client(httpClient);
+        
+        //When
+        String result = client.getResponse (baseURL);
+        
+        //Then
+        assertEquals ( "200" ,result );
+
+        }
+    }
+ 
+
+klasa
+
+    package org.wjarze.JavaNetworking;
+    import java.net.URI;
+    import java.net.http.HttpClient;
+    import java.net.http.HttpRequest;
+    
+    public class Client {
+    HttpClient httpClient;
+
+        public Client(HttpClient httpClient) {
+            this.httpClient = httpClient;
+        }
+        public HttpRequest getRequest(String baseURL) {
+            return HttpRequest.newBuilder ( )
+                    .uri ( URI.create ( baseURL ) )
+                    .build ( );
+        }
+
+        public String getResponse(String baseURL) {
+            return null;
+        }
+    }
+
+przy tej konfiguracji test się sypie 
+dorabiamy ciało metody i przechodzimy do testu 
+
+    package org.wjarze.JavaNetworking;
+
+    import java.io.IOException;
+    import java.net.URI;
+    import java.net.http.HttpClient;
+    import java.net.http.HttpRequest;
+    import java.net.http.HttpResponse;
+
+    public class Client {
+        HttpClient httpClient;
+
+        public Client(HttpClient httpClient) {
+            this.httpClient = httpClient;
+        }
+        public HttpRequest getRequest(String baseURL) {
+             return HttpRequest.newBuilder ( )
+                    .uri ( URI.create ( baseURL ) )
+                    .build ( );
+        }
+
+        public HttpResponse<String> getResponse(String baseURL) throws IOException, InterruptedException {
+            return httpClient.send ( getRequest (baseURL ) , HttpResponse.BodyHandlers.ofString ( ) );
+        }
+    }
+
+
+test z oczekiwanym kodem odpowiedzi 200
+
+    package org.wjarze.JavaNetworking;
+
+    import java.io.IOException;
+    import java.net.http.HttpClient;
+    import java.net.http.HttpRequest;
+    import java.net.http.HttpResponse;
+    import org.junit.jupiter.api.Test;
+
+    import static org.junit.jupiter.api.Assertions.*;
+    import static org.mockito.Mockito.mock;
+    import static org.mockito.Mockito.when;
+
+    class ClientTest {
+        @Test
+        public void should_Get_Request_Method{
+            //Given
+            String baseURL = "http://nbexample.com";
+
+            HttpClient httpClient =  HttpClient.newHttpClient ();
+            Client client = new Client(httpClient);
+
+            //When
+            String result = client.getRequest (baseURL).method ();
+       
+            //Then
+            assertEquals ( "GET" ,result );
+
+        }
+        @Test
+        void should_Return_StatusCode() throws IOException, InterruptedException {
+            //Given
+            String baseURL = "http://example.com";
+
+            HttpClient httpClient = HttpClient.newHttpClient ();
+            Client client = new Client(httpClient);
+
+            //When
+            int result = client.getResponse (baseURL).statusCode ();
+
+            //Then
+            assertEquals ( 200 ,result );
+
+    }
+
+
+}
+
+ i wszystko jest w porządku dopoki adres URL jest rzeczywistego serwera , mamy dostep do internetu i serwer działa w innym wypadku aby metody przetestwać trzeba sięgnąć po makiety
+tak więc nie pozostaje nic innego  jak użycie mokito i symulowanie odpowiedzi.
+Po niezbędnych poprawkach testy wygladają tak
+
+    package org.wjarze.JavaNetworking;
+
+    import java.io.IOException;
+    import java.net.http.HttpClient;
+    import java.net.http.HttpRequest;
+    import java.net.http.HttpResponse;
+    import org.junit.jupiter.api.Test;
+
+    import static org.junit.jupiter.api.Assertions.assertEquals;
+    import static org.junit.jupiter.api.Assertions.assertNotNull;
+    import static org.mockito.Mockito.mock;
+    import static org.mockito.Mockito.when;
+
+    class ClientTest {
+        @Test
+        public void should_Get_Request_Method(){
+            //Given
+             String baseURL = "http://example.com";
+
+            HttpClient httpClient = mock(HttpClient.class);
+            HttpRequest httpRequest = mock ( HttpRequest.class );
+            Client client = new Client(httpClient);
+
+            String requestMethod = "GET";
+            when(httpRequest.method ()).thenReturn(requestMethod);
+
+            //When
+            String result = client.getRequest (baseURL).method ();
+
+            //Then
+            assertEquals ( requestMethod ,result );
+        }
+        
+        @Test
+        void should_Return_StatusCode() throws IOException, InterruptedException {
+            //Given
+            String baseURL = "http://example.com";
+
+            HttpClient httpClient = mock(HttpClient.class);
+            Client client = new Client(httpClient);
+       
+            //Mockowanie odpowiedzi
+            HttpResponse httpResponse = mock(HttpResponse.class);
+
+            //sprawdzenie czy są mocki
+            assertNotNull (httpClient  );
+            assertNotNull (client  );
+      
+
+            // Przygotowanie odpowiedzi HTTP
+            int statCode = 200;
+            when(httpResponse.statusCode ()).thenReturn(statCode);
+
+             // Ustawić, żeby mockowany klient zwrócił przygotowaną odpowiedź
+            when(httpClient.send ( client.getRequest ( baseURL ),HttpResponse.BodyHandlers.ofString()))
+                .thenReturn( httpResponse );
+            //When
+            // Wywołanie metody getResponse
+            HttpResponse result = client.getResponse  ( baseURL ) ;
+
+            //Then
+            // Sprawdzenie, czy rezultat jest zgodny z oczekiwaną odpowiedzią
+            assertEquals(statCode, result.statusCode ()  );
+        }
+     }
+
+I tak miej więcej przebiga cały proces i jak przekonaliśmy się niepotrzebna jest metoda "main" na koncu całego procesu oczywiście można ją zrealizować i przekonać się że aplikacja działa. W tym przykłądzie przetestowałem podstawoewe funkcjonalności wysłanie żadania i status odpowiedzi, ale nic nie stoi na przeszkodzie żeby dalej założyć jakies brzegowe warunki testowe związane na przykłąd z obsługa wyjątków , kolejnych satusów odpowiedzi czy też pobraniem zasobu. Rozważyć trzeba rózne scenariusze a nie tylko idealne wykonanie "Happy path".    
+Mam nadzieje że w pewnym stopniu wyjaśniłem meandry takiego podejścia tworzenia kodu. Kod tworzony w ten sposób wydaje się bardziej zorganizowany, zwiwiezły i logicznie poukładany w całość.Jest bardziej elsatyczny i łatwiejszy do zrozumienia. To podejście zapewnia większą pewność co do jakości kodu i pomaga wychwycić potencjalne błędy we wczesnych fazach rozwoju.
+Na zakończenie zachęcam do kontynuowania praktyki TDD i eksperymentowania z różnymi aspektami tego podejścia. W miarę doświadczenia zauważalne jest to że nie tylko kod staje się bardziej niezawodny, ale także proces tworzenia oprogramowania staje się bardziej przyjemny i efektywny. 
+
+kod dostępny w repozytorium
