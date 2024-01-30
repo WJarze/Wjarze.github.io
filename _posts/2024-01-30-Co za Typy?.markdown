@@ -64,17 +64,17 @@ Tu odpowiedniki prymitywów z niejawnym Autoboxingiem i Unboxingiem dzieje się 
 
 I nasze własne referencje.
 
-BlackHole blackHole;
+    BlackHole blackHole;
 
 bardziej przyziemnie
 
-Client client;
+    Client client;
 
 i odpowiednie obiekty
 
-BlackHole blackHole = new BlackHole();
+    BlackHole blackHole = new BlackHole();
 
-Client client = new Client();
+    Client client = new Client();
 
 itp itd.....
 
@@ -84,9 +84,9 @@ Typy obiektowe są przechowywane w pamięci dynamicznej (heap) i zajmują więce
 
 Java jako język silnie statycznie typowany.
 
-int liczbaCalkowita = 42;
+    int liczbaCalkowita = 42;
 
-String tekst = "Hello, World!";
+    String tekst = "Hello, World!";
 
 Typ musi być określony; są sprawdzane przed wykonaniem programu, aczkolwiek możliwe są niedoprecyzowania, szczególnie brak inicjalizacji, co wywoła błąd.
 
@@ -95,9 +95,9 @@ Typ musi być określony; są sprawdzane przed wykonaniem programu, aczkolwiek m
 
 Obowiązuje rzutowanie, które może wiązać się z utratą części danych.
 
-double zmiennoprzecinkowa = 9.81;
-int calkowita = (int) zmiennoprzecinkowa; // Jawne rzutowanie double na int
-System.out.println(calkowita);  // Wynik: 9 (po utracie części dziesiętnych)
+    double zmiennoprzecinkowa = 9.81;
+    int calkowita = (int) zmiennoprzecinkowa; // Jawne rzutowanie double na int
+    System.out.println(calkowita);  // Wynik: 9 (po utracie części dziesiętnych)
 
 Także dla obiektów.
 
