@@ -13,20 +13,23 @@ Typy proste, z których jest osiem, reprezentowane przez:
 
 Liczby Całkowite (Integral Types):
 
-byte: 8-bitowa liczba całkowita ze znakiem. Zakres: -128 do 127
-short: 16-bitowa liczba całkowita ze znakiem. Zakres: -32,768 do 32,767
-int: 32-bitowa liczba całkowita ze znakiem. Zakres: -2^31 do 2^31 - 1
-long: 64-bitowa liczba całkowita ze znakiem. Zakres: -2^63 do 2^63 - 1
+    byte: 8-bitowa liczba całkowita ze znakiem. Zakres: -128 do 127
+    short: 16-bitowa liczba całkowita ze znakiem. Zakres: -32,768 do 32,767
+    int: 32-bitowa liczba całkowita ze znakiem. Zakres: -2^31 do 2^31 - 1
+    long: 64-bitowa liczba całkowita ze znakiem. Zakres: -2^63 do 2^63 - 1
+    
 Liczby Zmiennoprzecinkowe (Floating-Point Types):
 
-float: 32-bitowa liczba zmiennoprzecinkowa. Zakres: Zbliżony do ±3.40282347E+38F (6-7 miejsc po przecinku)
-double: 64-bitowa liczba zmiennoprzecinkowa. Zakres: Zbliżony do ±1.79769313486231570E+308 (15 miejsc po przecinku)
+    float: 32-bitowa liczba zmiennoprzecinkowa. Zakres: Zbliżony do ±3.40282347E+38F (6-7 miejsc po przecinku)
+    double: 64-bitowa liczba zmiennoprzecinkowa. Zakres: Zbliżony do ±1.79769313486231570E+308 (15 miejsc po przecinku)
+    
 Typ Logiczny:
 
-boolean: Reprezentuje wartość logiczną, czyli true lub false.
+    boolean: Reprezentuje wartość logiczną, czyli true lub false.
+
 Typ Znakowy:
 
-char: Reprezentuje pojedynczy znak Unicode. Zakres: 0 do 65,535 (lub '\u0000' do '\uffff' w notacji Unicode)
+    char: Reprezentuje pojedynczy znak Unicode. Zakres: 0 do 65,535 (lub '\u0000' do '\uffff' w notacji Unicode)
 
     byte myByte = 127;
     short myShort = 32000;
