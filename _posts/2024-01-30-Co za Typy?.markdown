@@ -47,7 +47,7 @@ Zakresy i rozmiary mogą się różnić w zależności od implementacji JVM.
 
 Mają także swoje odpowiedniki obiektowe.
 
-Typy referencyjne (obiektowe) tworzymy sami, definiując klasy, co ogranicza naszą wyobraźnię.
+Typy referencyjne (obiektowe) tworzymy sami, definiując klasy, ogranicza nas tylko wyobraźnia.
 
 Tu odpowiedniki prymitywów z niejawnym Autoboxingiem i Unboxingiem dzieje się z automatu.
 
