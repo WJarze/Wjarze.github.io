@@ -1,0 +1,224 @@
+---
+layout: post
+title:  "Co za Typy?"
+date:   2024-01-30 17:41:28 +0100
+categories: jekyll update
+---
+
+Najkrócej jak można, bez typów, nic byśmy nie napisali. Podstawową funkcją, jaką pełni kod w Javie, jest manipulacja danymi, które mają swoje typy. Przechodząc od ogółu do szczegółu:
+
+Typy w Javie na początek są dwa:
+
+Typy proste, z których jest osiem, reprezentowane przez:
+
+Liczby Całkowite (Integral Types):
+
+    byte: 8-bitowa liczba całkowita ze znakiem. Zakres: -128 do 127
+    short: 16-bitowa liczba całkowita ze znakiem. Zakres: -32,768 do 32,767
+    int: 32-bitowa liczba całkowita ze znakiem. Zakres: -2^31 do 2^31 - 1
+    long: 64-bitowa liczba całkowita ze znakiem. Zakres: -2^63 do 2^63 - 1
+    
+Liczby Zmiennoprzecinkowe (Floating-Point Types):
+
+    float: 32-bitowa liczba zmiennoprzecinkowa. Zakres: Zbliżony do ±3.40282347E+38F (6-7 miejsc po przecinku)
+    double: 64-bitowa liczba zmiennoprzecinkowa. Zakres: Zbliżony do ±1.79769313486231570E+308 (15 miejsc po przecinku)
+    
+Typ Logiczny:
+
+    boolean: Reprezentuje wartość logiczną, czyli true lub false.
+
+Typ Znakowy:
+
+    char: Reprezentuje pojedynczy znak Unicode. Zakres: 0 do 65,535 (lub '\u0000' do '\uffff' w notacji Unicode)
+
+    byte myByte = 127;
+    short myShort = 32000;
+    int myInt = 2147483647;
+    long myLong = 9223372036854775807L;  // "L" na końcu wskazuje, że to typ long
+
+    float myFloat = 3.14f;  // "f" na końcu wskazuje, że to typ float
+    double myDouble = 3.14;
+
+    boolean myBoolean = true;
+
+    char myChar = 'A';
+
+Zakresy i rozmiary mogą się różnić w zależności od implementacji JVM.
+
+Mają także swoje odpowiedniki obiektowe.
+
+Typy referencyjne (obiektowe) tworzymy sami, definiując klasy, ogranicza nas tylko wyobraźnia.
+
+Tu odpowiedniki prymitywów z niejawnym Autoboxingiem i Unboxingiem dzieje się z automatu.
+
+    Integer myInt = 42; // Autoboxing
+    int primitiveInt = myInt; // Unboxing
+
+    Double myDouble = 3.14; 
+    double primitiveDouble = myDouble; 
+
+    Boolean myBoolean = true; 
+    boolean primitiveBoolean = myBoolean; 
+
+    Character myChar = 'A'; 
+    char primitiveChar = myChar; 
+
+    String myString = "Hello, World!";
+
+I nasze własne referencje.
+
+    BlackHole blackHole;
+
+bardziej przyziemnie
+
+    Client client;
+
+i odpowiednie obiekty
+
+    BlackHole blackHole = new BlackHole();
+
+    Client client = new Client();
+
+itp itd.....
+
+Typy prymitywne zajmują stałą ilość pamięci, niezależnie od sytuacji. Są bezpośrednio przechowywane jako wartości binarne.
+
+Typy obiektowe są przechowywane w pamięci dynamicznej (heap) i zajmują więcej miejsca niż ich odpowiedniki prymitywne. Każdy obiekt ma dodatkowe informacje, takie jak nagłówek obiektu, wskaźnik na klasę, a także miejsce na dane. Przechowywanie typów obiektowych jest bardziej złożone niż przechowywanie typów prymitywnych.
+
+Java jako język silnie statycznie typowany.
+
+    int liczbaCalkowita = 42;
+
+    String tekst = "Hello, World!";
+
+Typ musi być określony; są sprawdzane przed wykonaniem programu, aczkolwiek możliwe są niedoprecyzowania, szczególnie brak inicjalizacji, co wywoła błąd.
+
+    int y;
+    System.out.println(y);  // To spowoduje błąd kompilacji.
+
+Obowiązuje rzutowanie, które może wiązać się z utratą części danych.
+
+    double zmiennoprzecinkowa = 9.81;
+    int calkowita = (int) zmiennoprzecinkowa; // Jawne rzutowanie double na int
+    System.out.println(calkowita);  // Wynik: 9 (po utracie części dziesiętnych)
+
+Także dla obiektów.
+
+    class Figura { /* ... */ }
+
+    class Kwadrat extends Figura { /* ... */ }
+
+    Figura figura = new Kwadrat();
+
+    Kwadrat kwadrat = (Kwadrat) figura; // Rzutowanie w dół
+
+Rzutowaniem i dziedziczeniem trzeba uważać. Poniżej działający przykład.
+
+    class Zwierze {
+        void oddychaj() {
+            System.out.println("Zwierzę oddycha");
+         }
+    }
+
+    class Ptak extends Zwierze {
+         void lataj() {
+            System.out.println("Ptak lata");
+        }
+    }
+
+    public class TestRzutowania {
+        public static void main(String[] args) {
+            Zwierze zwierze = new Ptak(); // Tworzymy obiekt Ptak i przypisujemy go do referencji Zwierze
+            zwierze.oddychaj(); // To zadziała, ponieważ metoda oddychaj jest dostępna w klasie Zwierze
+
+             // Rzutowanie w dół - próba rzutowania na klasę Ptak
+             if (zwierze instanceof Ptak) {
+                 Ptak ptak = (Ptak) zwierze; // Rzutujemy referencję zwierze na referencję ptak
+                 ptak.lataj(); // To zadziała, ponieważ teraz mamy dostęp do metody lataj z klasy Ptak
+            }
+        }
+    }
+
+W tym przykładzie Zwierze to klasa bazowa, a Ptak to klasa pochodna. Mimo że obiekt jest utworzony jako new Ptak(), to referencja jest typu Zwierze. Rzutowanie w dół pozwala uzyskać dostęp do specyficznych dla klasy Ptak metod, ale trzeba używać go z ostrożnością i zawsze sprawdzać, czy rzutowanie jest bezpieczne przy użyciu operatora instanceof.
+
+Aby uniknąć błędów rzutowania, warto używać warunków sprawdzających, czy dany obiekt jest instancją konkretnej klasy.
+
+Jeszcze warto zauważyć, że próba rzutowania w dół na niewłaściwy typ, na przykład:
+       
+     Zwierze zwierze = new Zwierze ();
+        Ptak ptak = (Ptak) zwierze;
+        ptak.odychaj ();
+        ptak.lata ();
+
+w tym przypadku, kod spowoduje ClassCastException. Nie można bezpiecznie dokonać rzutowania w dół, ponieważ zwierze faktycznie nie jest instancją klasy Ptak. To jest klasyczny przykład sytuacji, w której próba rzutowania w dół do niewłaściwego typu kończy się wyjątkiem.
+
+    Zwierze zwierze = new Zwierze();
+        if (zwierze instanceof Ptak) {
+        Ptak ptak = (Ptak) zwierze;
+        ptak.oddychaj();
+        ptak.lataj();
+    } else {
+         System.out.println("To nie jest ptak, więc nie możemy rzutować na Ptak.");
+    }
+
+A jeszce żeby takie warunki sprawdzać sprawia że dziedziczenie jest dość kłopotliwym mechanizmem w przypadku nie umniejetnego zastosowania ważne jest aby hierarchia dziedziczenia była pewna.
+Dużo jeszcze pisania wiec mechanizm dziedziczenia osobny temat
+
+Kolejną zabawą jest parsowanie, które odnosi się do konwersji danych w formie tekstowej (String) na inny typ danych, najczęściej używane przy konwersji tekstu na liczby.
+
+    String tekstLiczbowy = "42";
+    int liczbaCalkowita = Integer.parseInt(tekstLiczbowy);
+    System.out.println(liczbaCalkowita);  // Wynik: 42
+
+Wspomniałem już, że prymitywy mają swoje odpowiedniki w obiektach, a pakowanie ich w obiekty to Wrapping.
+
+    int liczbaCalkowita = 10;
+    Integer obiektInteger = Integer.valueOf(liczbaCalkowita);  // Wrapowanie
+    System.out.println(obiektInteger);  // Wynik: 10
+
+Odpoiwedniki obiektowe stosowane są w kolekcjach generycznych
+
+    List<Integer> integerList = new ArrayList<>();
+    integerList.add(42);  // Autoboxing: int to Integer
+    int value = integerList.get(0);  // Unboxing: Integer to int
+
+Przydać się może czasami opcja że zamiasta wartości zero potrzeba bedzie wyrzucić nulla.
+
+możemy pobawić się komentując odpowiednie linie
+
+    public class NullableExample {
+         public static void main(String[] args) {
+            // Typ prymitywny int nie może przyjąć wartości null
+            // int myNumber = null; // To spowoduje błąd kompilacji
+
+            // Użycie klasy opakowującej Integer do reprezentowania braku wartości
+            Integer nullableNumber = null;
+
+            // Sprawdzamy, czy zmienna ma wartość null przed użyciem
+            if (nullableNumber != null) {
+                // Wykonujemy operacje na wartości
+                int result = nullableNumber + 5;
+                System.out.println("Wynik: " + result);
+            } else {
+                System.out.println("Zmienna ma wartość null.");
+            }
+        }
+    }
+
+Nie ma co się rozdrabniać, dla prymitywów liczbowych nikt nowej matematyki nie wymyślił; działa to standardowo. W osobnym wpisie poruszę temat działań arytmetycznych i przybliżeń wyników, gdyż dla branży finansowej, inżynierii i techniki ma to ogromne znaczenie. Do obsługi służy osobna klasa, która niweluje błędy związane z precyzją matematyczną. Wspomnę, że zasadniczo wynikają one głównie z dwóch czynników: reprezentacji liczbowej w komputerze oraz ograniczeń związanych z arytmetyką zmiennoprzecinkową.
+
+Co do typu String, to trochę inna bajka. Jest trochę odpowiednich metod do manipulowania. Tu wspomnę o łączeniu (konkatenacja).
+
+    String firstName = "John";
+    String lastName = "Kowalski";
+
+    String fullName = firstName + " " + lastName;  // Łączenie napisów
+
+a szerzej w osobnym wpisie o klasie String i formatowaniu tekstu.
+
+A teraz troche o wydajności wydaje się już właściwe na samym poczatku używać odpowiednićh typów do odpowiednich zastosowań i np nie stosować zmiennoprzecinkowych tak gdzie odpowiednie będą całkowite , także niekoniecznie stosować obiektowe odpowiedniki i związane z tym operacje rzutowania , i wzwiązku z tym auto-(un)boxing.
+To tyle tematem typów i jakie mogą mieć swoje ciemne strony a niektóre moga doprowadzidz do słynnego NullPointerException , ciekawy jest też jak przyjdzie duży typ OutOfMemoryError.
+
+
+
+
