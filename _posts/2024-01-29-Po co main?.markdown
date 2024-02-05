@@ -95,7 +95,7 @@ a test
         }
     }
 
-i w tym wypadku test się wysypie no nie wątpliwie przydało by się jakieś ciało metody szybki w gląd w dokumentacje i mam.
+i w tym wypadku test się wysypie no nie wątpliwie przydało by się jakieś ciało metody szybki wgląd w dokumentacje i mam.
 Po modyfikacjach
 
     package org.wjarze.JavaNetworking;
@@ -146,7 +146,7 @@ test
 }
 
 i po tych modyfikacjach mamy sukces.
-Dalej robi się ciekawiej zobaczymy co przyniesie odpowiedz z servera zaczynając od testu zakładamy ze odpowiedż nadejdzie oczekujemy wiec jej statusu 200.
+Dalej robi się ciekawiej zobaczymy co przyniesie odpowiedz z servera zaczynając od testu zakładamy ze odpowiedż nadejdzie oczekujemy więc jej statusu 200.
 
     package org.wjarze.JavaNetworking;
     import java.io.IOException;
@@ -364,7 +364,7 @@ Po niezbędnych poprawkach testy wygladają tak
         }
      }
 
-I tak miej więcej przebiga cały proces i jak przekonaliśmy się niepotrzebna jest metoda "main" na koncu całego procesu oczywiście można ją zrealizować i przekonać się że aplikacja działa. W tym przykłądzie przetestowałem podstawoewe funkcjonalności wysłanie żadania i status odpowiedzi, ale nic nie stoi na przeszkodzie żeby dalej założyć jakies brzegowe warunki testowe związane na przykłąd z obsługa wyjątków , kolejnych satusów odpowiedzi czy też pobraniem zasobu. Rozważyć trzeba rózne scenariusze a nie tylko idealne wykonanie "Happy path".    
+I tak miej więcej przebiga cały proces i jak przekonaliśmy się niepotrzebna jest metoda "main" na końcu całego procesu, oczywiście można ją zrealizować i przekonać się że aplikacja działa. W tym przykłądzie przetestowałem podstawoewe funkcjonalności wysłanie żadania i status odpowiedzi, ale nic nie stoi na przeszkodzie żeby dalej założyć jakies brzegowe warunki testowe związane na przykłąd z obsługa wyjątków , kolejnych satusów odpowiedzi czy też pobraniem zasobu. Rozważyć trzeba różne scenariusze a nie tylko idealne wykonanie "Happy path".    
 Mam nadzieje że w pewnym stopniu wyjaśniłem meandry takiego podejścia tworzenia kodu. Kod tworzony w ten sposób wydaje się bardziej zorganizowany, zwiwiezły i logicznie poukładany w całość.Jest bardziej elsatyczny i łatwiejszy do zrozumienia. To podejście zapewnia większą pewność co do jakości kodu i pomaga wychwycić potencjalne błędy we wczesnych fazach rozwoju.
 Na zakończenie zachęcam do kontynuowania praktyki TDD i eksperymentowania z różnymi aspektami tego podejścia. W miarę doświadczenia zauważalne jest to że nie tylko kod staje się bardziej niezawodny, ale także proces tworzenia oprogramowania staje się bardziej przyjemny i efektywny. 
 
